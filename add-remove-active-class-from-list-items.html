@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Js challenge - 1</title>
+</head>
+<body>
+
+<h1>Add class in element and remove class from sibling elements in Javascript</h1>
+
+<ul class="list-wrapper">
+    <li><a href="javascript:void(0)" class="list-item">List Item 1</a></li>
+    <li><a href="javascript:void(0)" class="list-item">List Item 2</a></li>
+    <li><a href="javascript:void(0)" class="list-item">List Item 3</a></li>
+    <li><a href="javascript:void(0)" class="list-item">List Item 4</a></li>
+    <li><a href="javascript:void(0)" class="list-item">List Item 5</a></li>
+</ul>
+
+<script>
+    let allElement = document.querySelectorAll('.list-item');
+    allElement.forEach(listItem => {
+        listItem.addEventListener("click", function(){
+
+            allElement.forEach(item => item.classList.remove('active'));
+            
+            // current element active class
+            this.classList.add("active");
+        });
+    });
+</script>
+</body>
+</html>
