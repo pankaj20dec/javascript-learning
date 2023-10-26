@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slick slider with autoplay and pause on video</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+</head>
+<body>
+    <h1>Slick slider with video with autoplay and pause</h1>
+    <p>Slick slider with autoplay and pause the slider when the embedded YouTube video is playing and autoplay the slider when the video is paused.</p>
+
+    <div class="slider">
+        <div class="slide">
+            <iframe id="video1" width="560" height="315" src="https://www.youtube.com/embed/AViTh83k-IE?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="slide">
+            <iframe id="video2" width="560" height="315" src="https://www.youtube.com/embed/3xS5R_vPbCw?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="slide">
+            <iframe id="video3" width="560" height="315" src="https://www.youtube.com/embed/SyRZOepDv8I?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        var slider;
+        var players = [];
+
+        function onYouTubeIframeAPIReady() {
+            players.push(new YT.Player('video1', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            }));
+            players.push(new YT.Player('video2', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            }));
+            players.push(new YT.Player('video3', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            }));
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                slider.slick('slickPause');
+                console.log("video playing");
+            } else if (event.data === YT.PlayerState.PAUSED) {
+                slider.slick('slickPlay');
+            }
+        }
+
+        $(document).ready(function () {
+            slider = $('.slider');
+            slider.slick({
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
+        });
+    </script>
+</body>
+</html>

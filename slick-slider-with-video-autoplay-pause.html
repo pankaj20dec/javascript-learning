@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slick slider with autoplay and pause on video</title>
+    <link rel="stylesheet" type="text/css" href="https://d9tj.tractorfirst.com/assets/css/slick.css" />
+</head>
+<body>
+    <h1>Slick slider with video with autoplay and pause</h1>
+    <p>Slick slider with autoplay and pause the slider when the embedded YouTube video is playing and autoplay the slider when the video is paused.</p>
+
+    <div class="slider-for">
+    	  <div class="main-slide">
+    	  	   <img src="https://assets.tractorjunction.com/tractor-junction/assets/images/upload/farmtrac-atom-26-1690535758.webp?format=webp" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
+    	  </div>
+        <div class="main-slide">
+            <iframe id="video1" width="560" height="315" src="https://www.youtube.com/embed/AViTh83k-IE?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="slide">
+            <iframe id="video2" width="560" height="315" src="https://www.youtube.com/embed/3xS5R_vPbCw?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+<div class="slider-nav">
+    	  <div class="main-slide">
+    	  	   <img src="https://assets.tractorjunction.com/tractor-junction/assets/images/upload/farmtrac-atom-26-1690535758.webp?format=webp" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
+    	  </div>
+    	  <div class="main-slide">
+    	  	   <img src="https://i.ytimg.com/vi/j8qbcKwTY9Y/mqdefault.jpg" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
+    	  </div>
+    	  <div class="main-slide">
+    	  	   <img src="https://assets.tractorjunction.com/tractor-junction/assets/images/upload/farmtrac-atom-26-1690535758.webp?format=webp" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
+    	  </div>
+    	  <div class="main-slide">
+    	  	   <img src="https://assets.tractorjunction.com/tractor-junction/assets/images/upload/farmtrac-atom-26-1690535758.webp?format=webp" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
+    	  </div>
+    	  <div class="main-slide">
+    	  	   <img src="https://assets.tractorjunction.com/tractor-junction/assets/images/upload/farmtrac-atom-26-1690535758.webp?format=webp" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
+    	  </div>
+ </div>
+
+    <script type="text/javascript" src="https://d9tj.tractorfirst.com/assets/js/jslib.js?v=deva590lreaXYLs6px9"></script>
+    <script type="text/javascript" src="https://d9tj.tractorfirst.com/assets/js/slick.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        var slider;
+        var players = [];
+
+        function onYouTubeIframeAPIReady() {
+            players.push(new YT.Player('video1', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            }));
+            players.push(new YT.Player('video2', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            }));
+            players.push(new YT.Player('video3', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            }));
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                slider.slick('slickPause');
+                console.log("video playing");
+            } else if (event.data === YT.PlayerState.PAUSED) {
+                slider.slick('slickPlay');
+            }
+        }
+
+        $(document).ready(function () {
+            slider = $('.slider-for');
+            slider.slick({
+                autoplay: true,
+                autoplaySpeed: 2000,
+                asNavFor: '.slider-nav'
+            });
+            $('.slider-nav').slick({
+			slidesToShow: 3,
+			slidesToScroll: 1,
+			asNavFor: '.slider-for',
+			vertical: false,
+			dots: false,
+			focusOnSelect: true,
+			prevArrow: "<div class='slick-nav slick-prev box-shadow'><img src='https://assets.tractorjunction.com/tractor-junction/assets/images/icons/left-arrow-thick.png' alt='Left arrow thick' /></div>",
+			nextArrow: "<div class='slick-nav slick-next box-shadow'><img src='https://assets.tractorjunction.com/tractor-junction/assets/images/icons/right-arrow-thick.png' alt='Right arrow thick' /></div>",
+			responsive: [{
+				breakpoint: 1024,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 1,
+				}
+			}, ]
+		});
+        });
+    </script>
+</body>
+</html>

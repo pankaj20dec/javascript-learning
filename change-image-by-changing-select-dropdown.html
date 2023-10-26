@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Js challenge - 4</title>
+<style>
+    .d-none{
+        display: none;
+    }
+    .d-block{
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<h1>Change image by changing the select value elements in Javascript</h1>
+
+<div class="content-box">
+    <div class="top-content">
+        <h2 class="add-item">Add Item</h2>
+        <a href="javascript:void(0);" class="close d-none">&times;</a>
+        <div class="image-box">
+            <img src="images/placeholder.png" height="200" width="300"/>
+        </div>
+    </div>
+    <div class="bottom-content">
+        <form>
+            <select class="select-brand">
+                <option value="" disabled selected>Select Brand</option>
+                <option value="tata">Tata</option>
+                <option value="mahindra">Mahindra</option>
+                <option value="brand3">Brand3</option>
+                <option value="brand4">Brand4</option>
+                <option value="brand5">Brand5</option>
+                <option value="brand6">Brand6</option>
+                <option value="brand7">Brand7</option>
+                <option value="brand8">Brand8</option>
+            </select>
+            <select class="select-model">
+                <option value="" disabled selected>Select Model</option>
+                <option value="model1" class="d-none">Model1</option>
+                <option value="model2" class="d-none">Model2</option>
+                <option value="" class="d-none">Model3</option>
+                <option value="model4" class="d-none">Model4</option>
+                <option value="model5" class="d-none">Model5</option>
+                <option value="" class="d-none">Model6</option>
+                <option value="model7" class="d-none">Model7</option>
+                <option value="model8" class="d-none">Model8</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    let selectBrand = document.querySelector('.select-brand');
+    let selectModel = document.querySelector('.select-model');
+    let modelLength = selectModel.options.length;
+    let selectModelArray = Array.from(selectModel.options);
+    //console.log(selectModelArray)
+    //console.log(selectBrand);
+  // console.log(selectBrand.value);
+    selectBrand.addEventListener("change", function(){
+        console.log(selectBrand.options.selectedIndex);
+        if(selectBrand.options.selectedIndex !== 0){
+            selectModelArray.forEach((option)=>{
+                option.classList.remove('d-none');
+            });
+        }
+        //console.log(selectModel.options);
+        // for(let i = 0; i < modelLength; i++){
+        //     selectModel.options[i].classList.remove('d-none');
+        // }
+    });
+    
+    selectModel.addEventListener("change", ()=>{
+        console.log(selectModel.value)
+        let emptyCondition = selectModel.value !== "";
+        emptyCondition ? changeTopBox() : ''
+    })
+</script>
+</body>
+</html>

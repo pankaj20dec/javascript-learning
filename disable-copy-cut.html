@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Js challenge - 3</title>
+</head>
+<body>
+
+<h1>Disable text selection, Copy, Cut text of specific elements in Javascript</h1>
+
+<div class="first-content">First - Contextmenu</div>
+<div class="second-content">Second - select</div>
+<div class="third-content">Third - Copy</div>
+<div class="fourth-content">Fourth - Lorem ipsum</div>
+<div class="fifth-content">Fifth - Lorem ipsum</div>
+
+<script>
+    // disable right click
+    const firstContent = document.querySelector('.first-content');
+    // firstContent.addEventListener("contextmenu",function(event){
+    //     event.preventDefault();
+    // });
+    // firstContent.addEventListener("mousedown",function(event){
+    //     event.preventDefault();
+    // });
+    // Multiple events
+    const preventFun = (event) => {event.preventDefault();}
+    const eventhandlers ={
+        contextmenu: preventFun,
+        mousedown: preventFun,
+        copy: preventFun
+    }
+
+    for( const key in eventhandlers){
+        firstContent.addEventListener(key,eventhandlers[key]);
+    }
+
+    // disable text selection
+    // const secondContent = document.querySelector('.second-content');
+    // secondContent.addEventListener("mousedown", (event)=>{
+    //     event.preventDefault();
+    // })
+</script>
+</body>
+</html>

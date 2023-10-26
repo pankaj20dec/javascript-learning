@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Js challenge - 4</title>
+<style>
+    .d-none{
+        display: none;
+    }
+    .d-block{
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<h1>Multiple select - depends on previous select value in Javascript</h1>
+
+<div class="content-box">
+    <div class="bottom-content">
+        <form>
+            <select class="select-state">
+                <option value="" disabled selected>Select State</option>
+                <option value="delhi">Delhi</option>
+                <option value="up">UP</option>
+                <option value="mp">MP</option>
+                <option value="rajasthan">Rajisthan</option>
+            </select>
+            <select class="select-district">
+                <option value="" disabled selected>Select District</option>
+            </select>
+            <select class="select-city">
+                <option value="" disabled selected>Select City</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<script>
+    const selectState = document.querySelector('.select-state'); 
+    const selectDistrict = document.querySelector('.select-district');
+    const selectCity = document.querySelector('.select-city');
+
+    //console.log(selectState.options)
+
+    let datas = {
+    delhi: [
+            {value: "east-delhi",text:"East Delhi"},
+            {value: "west-delhi",text:"West Delhi"},
+            {value: "north-delhi",text:"North Delhi"},
+            {value: "south-delhi",text:"South Delhi"}
+        ],
+    up: [
+            {value: "up1",text:"UP1"},
+            {value: "up2",text:"UP2"},
+            {value: "up3",text:"UP3"},
+            {value: "up4",text:"UP4"}
+        ]
+    }
+    
+    selectState.addEventListener("change",()=>{
+       // console.log(selectDistrict.options);
+       const currentValue = selectState.value;
+       //console.log(currentValue);
+       //selectDistrict.remove(option);
+       const newOptions = document.querySelectorAll('.new-option');
+            const newOptionsArray = Array.from(newOptions);
+            newOptionsArray.forEach((newopt)=>{
+                selectDistrict.removeChild(newopt);
+            })
+            //console.log(newOptions);
+            //console.log(datas[currentValue]);
+        datas[currentValue].forEach((data)=>{
+            
+            const option = document.createElement('option');     
+            option.value = data.value;
+            option.text = data.text;
+            option.classList.add('new-option');
+            selectDistrict.appendChild(option);
+        });
+    });
+</script>
+</body>
+</html>
