@@ -10,30 +10,46 @@
 
     <div class="slider-for">
     	  <div class="main-slide">
+    	  	1
     	  	   <img src="https://assets.tractorjunction.com/tractor-junction/assets/images/upload/farmtrac-atom-26-1690535758.webp?format=webp" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
     	  </div>
         <div class="main-slide">
+        	2.
             <iframe id="video1" width="560" height="315" src="https://www.youtube.com/embed/AViTh83k-IE?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
         </div>
-        <div class="slide">
+        <div class="main-slide">
+        	3.
             <iframe id="video2" width="560" height="315" src="https://www.youtube.com/embed/3xS5R_vPbCw?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="main-slide">
+        	4
+        		<img src="https://assets.tractorjunction.com/tractor-junction/assets/images/upload/farmtrac-atom-26-1690535758.webp?format=webp" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
+        </div>
+        <div class="main-slide">
+        	5
+        	    <img src="https://assets.tractorjunction.com/tractor-junction/assets/images/upload/farmtrac-atom-26-1690535758.webp?format=webp" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
         </div>
     </div>
 
 <div class="slider-nav">
-    	  <div class="main-slide">
+    	  <div class="nav-slide">
+    	  	1.
     	  	   <img src="https://assets.tractorjunction.com/tractor-junction/assets/images/upload/farmtrac-atom-26-1690535758.webp?format=webp" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
     	  </div>
-    	  <div class="main-slide">
+    	  <div class="nav-slide">
+    	  	2.
     	  	   <img src="https://i.ytimg.com/vi/j8qbcKwTY9Y/mqdefault.jpg" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
     	  </div>
-    	  <div class="main-slide">
+    	  <div class="nav-slide">
+    	  	3.
     	  	   <img src="https://assets.tractorjunction.com/tractor-junction/assets/images/upload/farmtrac-atom-26-1690535758.webp?format=webp" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
     	  </div>
-    	  <div class="main-slide">
+    	  <div class="nav-slide">
+    	  	4.
     	  	   <img src="https://assets.tractorjunction.com/tractor-junction/assets/images/upload/farmtrac-atom-26-1690535758.webp?format=webp" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
     	  </div>
-    	  <div class="main-slide">
+    	  <div class="nav-slide">
+    	  	5.
     	  	   <img src="https://assets.tractorjunction.com/tractor-junction/assets/images/upload/farmtrac-atom-26-1690535758.webp?format=webp" class="img-fluid" title="Farmtrac Atom 26 Tractor" alt="Farmtrac Atom 26 Tractor">
     	  </div>
  </div>
@@ -66,7 +82,7 @@
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.PLAYING) {
                 slider.slick('slickPause');
-                console.log("video playing");
+                //console.log("video playing");
             } else if (event.data === YT.PlayerState.PAUSED) {
                 slider.slick('slickPlay');
             }
@@ -95,7 +111,21 @@
 					slidesToScroll: 1,
 				}
 			}, ]
-		});
+			});
+                  slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+                  	var iframeVideo = $('.slider-for .main-slide:eq('+currentSlide+')').find('iframe');
+						
+                // Pause the video on the current slide
+                var currentVideo = players[iframeVideo.length];
+                //console.log(currentVideo);
+                if (currentVideo && currentVideo.pauseVideo) {
+                    currentVideo.pauseVideo();
+                }
+            });
+
+
+
+
         });
     </script>
 </body>
