@@ -3,6 +3,26 @@
 <head>
     <title>Slick slider with autoplay and pause on video</title>
     <link rel="stylesheet" type="text/css" href="https://d9tj.tractorfirst.com/assets/css/slick.css" />
+    <style>
+    	  .slider-nav{
+    	  	   max-width: 500px;
+    	  	   height: 100px;
+    	  }
+    	  .slider-nav .slick-slide img{
+    	  	 max-width: 100%;
+    	  }
+    	  .slick-arrow img {
+			    height: 20px;
+			}
+			.slick-active { animation: fadeIn 1.5s; }
+			@keyframes fadeIn {
+			  0% { opacity: 0; }
+			  100% { opacity: 1; }
+			}
+
+
+
+    </style>
 </head>
 <body>
     <h1>Slick slider with video with autoplay and pause</h1>
@@ -91,8 +111,11 @@
         $(document).ready(function () {
             slider = $('.slider-for');
             slider.slick({
+            	slidesToShow: 1,
+					slidesToScroll: 1,
                 autoplay: true,
                 autoplaySpeed: 2000,
+                arrows: false,
                 asNavFor: '.slider-nav'
             });
             $('.slider-nav').slick({
